@@ -1,10 +1,10 @@
 /*----- constants -----*/
 
 /*----- declare variables -----*/
-let board;
+let board = [];
 let solution = [];
 let selectionArray = [];
-let feedbackBoard;
+let feedbackBoard = [];
 
 /*----- cached HTML elements  -----*/
 const selectionRowElementArray = document.querySelectorAll(`.selection-pins`);
@@ -61,11 +61,62 @@ selectionRowElementArray.forEach(function (pin) {
 
 /*----- functions -----*/
 
+// Adds relevant colour value to the next available pin array in the next available guess row.
+function markPin(selectionPinColourNumber) {
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+            if (board[i][j] === 0) {
+                board[i][j] = selectionPinColourNumber;
+                renderBoard();
+                return;
+            }
+        }
+    }
+}
+
+// Checks if four guesses in a row have been made, and if so, provides feedback. ++ Also checks if there is a win or if the game is over - and adds messages accordining
+function guessFeedback() {
+    // check the board array, check each row and see if any rows have four non-zero values
+    // -- if no, exit the function
+    // -- if yes, for each row with 4 non-zero values:
+    // ---- loop through each value one by one
+    // ---- firstly, see if it is equal to the solutions value at the same index - if so, push '1' to the relevant feedback board row (to the first available spot)
+    // ---- if that isn't true, see if it is equal to any of the solutions values, in any of the index spots - if so, push '2' to the relevant feedback board row (to the first available spot)
+    // ---- if that also isn't true, move to the next guess value and repeat the above.
+    // -- once feedback has been given & rendered, then checkWin
+    // ---- if win is true, stop the game, and add a message to the message board. Don't allow anymore clicks.
+    // ---- if win is false, checkGameOver. If true - display a message in the messageboard. If false - allow more clicks.
+}
+
+// Checks if any of the guess rows = the solution row
+function checkWin() {
+    for (let guessRow of board) {
+        if (guessRow.every((element, index) => element === solution[index])) {
+            return true;
+        }
+    }
+}
+
+// Checks if it is 'game over'
+function checkGameOver() {
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+            if (board[i][j] === 0) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+/*----- render functions -----*/
+
 // Overall render function
 function render() {
     renderSelection();
     renderSolution();
     renderBoard();
+    renderFeedback();
 }
 
 // Colour the selection pins the right colours
@@ -138,36 +189,19 @@ function renderBoard() {
     }
 }
 
-// Adds relevant colour value to the next available pin array in the next available guess row.
-function markPin(selectionPinColourNumber) {
-    for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board[i].length; j++) {
-            if (board[i][j] === 0) {
-                board[i][j] = selectionPinColourNumber;
-                renderBoard();
-                return;
+// Renders the feedback board with any relevant pin colours
+function renderFeedback() {
+    for (let i = 0; i < feedbackBoard.length; i++) {
+        for (j = 0; j < feedbackBoard[i].length; j++) {
+            const feedbackPin = document.querySelector(
+                `[data-feedback-row="${i}"][data-feedback-pin="${j}"]`
+            );
+            if (feedbackBoard[i][j] === 1) {
+                feedbackPin.style.background = 'var(--feedback-1-colour)';
+            } else if (feedbackBoard[i][j] === 2) {
+                feedbackPin.style.background = 'var(--feedback-2-colour)';
+            } else {
             }
         }
     }
-}
-
-// Checks if any of the guess rows = the solution row
-function checkWin() {
-    for (let guessRow of board) {
-        if (guessRow.every((element, index) => element === solution[index])) {
-            return true;
-        }
-    }
-}
-
-// Checks if it is 'game over'
-function checkGameOver() {
-    for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board[i].length; j++) {
-            if (board[i][j] === 0) {
-                return false;
-            }
-        }
-    }
-    return true;
 }
