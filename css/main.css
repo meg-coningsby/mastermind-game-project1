@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=PT+Sans&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --selection-1-colour: red;
+    --selection-2-colour: orange;
+    --selection-3-colour: yellow;
+    --selection-4-colour: green;
+    --selection-5-colour: blue;
+    --selection-6-colour: purple;
+    --feedback-1-colour: black;
+    --feedback-2-colour: white;
+}
+
+header {
+    font-family: 'Nunito', sans-serif;
+    margin: 10px;
+}
+
+body {
+    font-family: 'PT Sans', sans-serif;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 2fr 10fr 1fr;
+    gap: 5px;
+}
+
+.selection {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    border: dashed 1px blue;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.selection div {
+    border: dashed 1px blue;
+    width: 2em;
+    height: 2em;
+    border: 1px solid color;
+    border-radius: 50%;
+}
+
+.message-board {
+    grid-row: 1 / 2;
+    grid-column: 2 / 4;
+    border: dashed 1px blue;
+    width: auto;
+    height: auto;
+}
+
+.game-board {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    border: dashed 1px blue;
+    width: auto;
+    height: auto;
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 5px;
+}
+
+.game-board div {
+    border: dashed 1px blue;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.game-board div div {
+    border: 1px solid color;
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+}
+
+.solution-row {
+    background: grey;
+}
+
+.feedback-board {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    border: dashed 1px blue;
+    width: auto;
+    height: auto;
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 5px;
+}
+
+.feedback-board div {
+    border: dashed 1px blue;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    gap: 1px;
+}
+
+.feedback-board div div {
+    border: 1px solid color;
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+}
+
+.scoreboard {
+    grid-row: 2 / 3;
+    grid-column: 3 / 4;
+    border: dashed 1px blue;
+    width: auto;
+    height: auto;
+}
+
+button {
+    font-family: 'PT Sans', sans-serif;
+}
+
+.another-round-button {
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+}
+
+.restart-button {
+    grid-row: 3 / 4;
+    grid-column: 2 / 4;
+}
