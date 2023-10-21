@@ -45,6 +45,7 @@ function init() {
     }
     render();
     console.log(solution); // Remove in final code - just to help with testing
+    console.log(selectionArray); // Remove in final code - just to help with testing
 }
 
 /*----- event listeners -----*/
@@ -53,7 +54,8 @@ function init() {
 selectionRowElementArray.forEach(function (pin) {
     pin.addEventListener('click', function (event) {
         console.log(event.target.dataset.selectionPin);
-        markPin(selectionPin);
+        selectionPinIndex = event.target.dataset.selectionPin;
+        markPin(selectionPinIndex);
     });
 }); // This just registers the click at the moment, it doesn't do anything with the click
 
@@ -63,6 +65,7 @@ selectionRowElementArray.forEach(function (pin) {
 function render() {
     renderSelection();
     renderSolution();
+    renderBoard();
 }
 
 // Colour the selection pins the right colours
@@ -110,5 +113,33 @@ function renderSolution() {
     }
 }
 
+// Renders the game board with any relevant pin colours
+function renderBoard() {
+    for (let i = 0; i < board.length; i++) {
+        for (j = 0; j < board[i].length; j++) {
+            const boardPin = document.querySelector(
+                `[data-guess-row="${i}"][data-guess-pin="${j}"]`
+            );
+            if (board[i][j] === 1) {
+                boardPin.style.background = 'var(--selection-0-colour)';
+            } else if (board[i][j] === 2) {
+                boardPin.style.background = 'var(--selection-1-colour)';
+            } else if (board[i][j] === 3) {
+                boardPin.style.background = 'var(--selection-2-colour)';
+            } else if (board[i][j] === 4) {
+                boardPin.style.background = 'var(--selection-3-colour)';
+            } else if (board[i][j] === 5) {
+                boardPin.style.background = 'var(--selection-4-colour)';
+            } else if (board[i][j] === 6) {
+                boardPin.style.background = 'var(--selection-5-colour)';
+            } else {
+            }
+        }
+    }
+}
+
 // Adds relevant colour value to the next available pin array in the next available guess row.
-function markPin(selectionPin) {}
+function markPin(selectionPinIndex) {
+    // Find the row and pin number for the next available spot to add a guess
+    // Update the game board variable in the array with the corresponding index + 1
+}
