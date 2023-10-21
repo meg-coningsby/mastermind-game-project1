@@ -150,3 +150,12 @@ function markPin(selectionPinColourNumber) {
         }
     }
 }
+
+// Checks if any of the guess rows = the solution row
+function checkWin() {
+    for (let guessRow of board) {
+        if (guessRow.every((element, index) => element === solution[index])) {
+            return true;
+        }
+    }
+}

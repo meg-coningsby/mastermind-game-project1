@@ -32,8 +32,8 @@ Mastermind
     - hide the solution code - done (but commented out for now)
 1. create an event that registers when you click one of the coloured circles in the selections area
     - first just console log the click - done
-    - push the colour value from the click to the corresponding next available pin
-    - then get it to fill the next available spot in the next available row with that colour
+    - push the colour value from the click to the corresponding next available pin - done
+    - then get it to fill the next available spot in the next available row with that colour - done
 1. check the guess code against the solution code once one guess row is complete
     - first just console log the answers
     - then get it to fill in the feedback row with the correct feedback
