@@ -84,8 +84,8 @@ function guessFeedback() {
     // ---- if that isn't true, see if it is equal to any of the solutions values, in any of the index spots - if so, push '2' to the relevant feedback board row (to the first available spot)
     // ---- if that also isn't true, move to the next guess value and repeat the above.
     // -- once feedback has been given & rendered, then checkWin
-    // ---- if win is true, stop the game, and add a message to the message board. Don't allow anymore clicks.
-    // ---- if win is false, checkGameOver. If true - display a message in the messageboard. If false - allow more clicks.
+    // ---- if win is true, stop the game, show the solution and add a message to the message board. Don't allow anymore clicks.
+    // ---- if win is false, checkGameOver. If true - display a message in the messageboard and show the solution. If false - allow more clicks.
 }
 
 // Checks if any of the guess rows = the solution row
