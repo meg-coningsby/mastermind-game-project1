@@ -27,7 +27,7 @@ body {
 main {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 2fr 10fr 1fr;
+    grid-template-rows: 3fr 15fr 1fr;
     gap: 5px;
 }
 
@@ -37,17 +37,49 @@ main {
     border: dashed 1px blue;
     width: auto;
     height: auto;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 5px;
+}
+
+.selection-pins {
+    border: dashed 1px blue;
+    width: auto;
+    height: auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.selection div {
-    border: dashed 1px blue;
+.selection div div {
     width: 2em;
     height: 2em;
     border: 1px solid color;
     border-radius: 50%;
+}
+
+.selection-1 {
+    background: var(--selection-1-colour);
+}
+
+.selection-2 {
+    background: var(--selection-2-colour);
+}
+
+.selection-3 {
+    background: var(--selection-3-colour);
+}
+
+.selection-4 {
+    background: var(--selection-4-colour);
+}
+
+.selection-5 {
+    background: var(--selection-5-colour);
+}
+
+.selection-6 {
+    background: var(--selection-6-colour);
 }
 
 .message-board {
