@@ -44,8 +44,9 @@ function init() {
         }
     }
     render();
-    console.log(solution); // Remove in final code - just to help with testing
-    console.log(selectionArray); // Remove in final code - just to help with testing
+    console.log(`Solution array: `, solution); // Remove in final code - just to help with testing
+    console.log(`Selection array: `, selectionArray); // Remove in final code - just to help with testing
+    console.log(`Original board: `, board); // Remove in final code - just to help with testing
 }
 
 /*----- event listeners -----*/
@@ -53,11 +54,10 @@ function init() {
 // When a selection pin is clicked
 selectionRowElementArray.forEach(function (pin) {
     pin.addEventListener('click', function (event) {
-        console.log(event.target.dataset.selectionPin);
-        selectionPinIndex = event.target.dataset.selectionPin;
-        markPin(selectionPinIndex);
+        selectionPinColourNumber = parseInt(event.target.dataset.colour);
+        markPin(selectionPinColourNumber);
     });
-}); // This just registers the click at the moment, it doesn't do anything with the click
+});
 
 /*----- functions -----*/
 
@@ -75,17 +75,17 @@ function renderSelection() {
             `[data-selection-pin="${i}"]`
         );
         if (selectionArray[i] === 1) {
-            selectionPin.style.background = 'var(--selection-0-colour)';
-        } else if (selectionArray[i] === 2) {
             selectionPin.style.background = 'var(--selection-1-colour)';
-        } else if (selectionArray[i] === 3) {
+        } else if (selectionArray[i] === 2) {
             selectionPin.style.background = 'var(--selection-2-colour)';
-        } else if (selectionArray[i] === 4) {
+        } else if (selectionArray[i] === 3) {
             selectionPin.style.background = 'var(--selection-3-colour)';
-        } else if (selectionArray[i] === 5) {
+        } else if (selectionArray[i] === 4) {
             selectionPin.style.background = 'var(--selection-4-colour)';
-        } else if (selectionArray[i] === 6) {
+        } else if (selectionArray[i] === 5) {
             selectionPin.style.background = 'var(--selection-5-colour)';
+        } else if (selectionArray[i] === 6) {
+            selectionPin.style.background = 'var(--selection-6-colour)';
         } else {
         }
     }
@@ -96,17 +96,17 @@ function renderSolution() {
     for (let i = 0; i < solution.length; i++) {
         let solutionPin = document.querySelector(`[data-solution-spot="${i}"]`);
         if (solution[i] === 1) {
-            solutionPin.style.background = 'var(--selection-0-colour)';
-        } else if (solution[i] === 2) {
             solutionPin.style.background = 'var(--selection-1-colour)';
-        } else if (solution[i] === 3) {
+        } else if (solution[i] === 2) {
             solutionPin.style.background = 'var(--selection-2-colour)';
-        } else if (solution[i] === 4) {
+        } else if (solution[i] === 3) {
             solutionPin.style.background = 'var(--selection-3-colour)';
-        } else if (solution[i] === 5) {
+        } else if (solution[i] === 4) {
             solutionPin.style.background = 'var(--selection-4-colour)';
-        } else if (solution[i] === 6) {
+        } else if (solution[i] === 5) {
             solutionPin.style.background = 'var(--selection-5-colour)';
+        } else if (solution[i] === 6) {
+            solutionPin.style.background = 'var(--selection-6-colour)';
         } else {
         }
         // solutionPin.style.visibility = `hidden`; Commented out just while testing the game
@@ -121,17 +121,17 @@ function renderBoard() {
                 `[data-guess-row="${i}"][data-guess-pin="${j}"]`
             );
             if (board[i][j] === 1) {
-                boardPin.style.background = 'var(--selection-0-colour)';
-            } else if (board[i][j] === 2) {
                 boardPin.style.background = 'var(--selection-1-colour)';
-            } else if (board[i][j] === 3) {
+            } else if (board[i][j] === 2) {
                 boardPin.style.background = 'var(--selection-2-colour)';
-            } else if (board[i][j] === 4) {
+            } else if (board[i][j] === 3) {
                 boardPin.style.background = 'var(--selection-3-colour)';
-            } else if (board[i][j] === 5) {
+            } else if (board[i][j] === 4) {
                 boardPin.style.background = 'var(--selection-4-colour)';
-            } else if (board[i][j] === 6) {
+            } else if (board[i][j] === 5) {
                 boardPin.style.background = 'var(--selection-5-colour)';
+            } else if (board[i][j] === 6) {
+                boardPin.style.background = 'var(--selection-6-colour)';
             } else {
             }
         }
@@ -139,7 +139,14 @@ function renderBoard() {
 }
 
 // Adds relevant colour value to the next available pin array in the next available guess row.
-function markPin(selectionPinIndex) {
-    // Find the row and pin number for the next available spot to add a guess
-    // Update the game board variable in the array with the corresponding index + 1
+function markPin(selectionPinColourNumber) {
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+            if (board[i][j] === 0) {
+                board[i][j] = selectionPinColourNumber;
+                renderBoard();
+                return;
+            }
+        }
+    }
 }

@@ -5,14 +5,14 @@
 }
 
 :root {
-    --selection-0-colour: red;
-    --selection-1-colour: orange;
-    --selection-2-colour: yellow;
-    --selection-3-colour: green;
-    --selection-4-colour: blue;
-    --selection-5-colour: purple;
-    --feedback-0-colour: black;
-    --feedback-1-colour: white;
+    --selection-1-colour: red;
+    --selection-2-colour: orange;
+    --selection-3-colour: yellow;
+    --selection-4-colour: green;
+    --selection-5-colour: blue;
+    --selection-6-colour: purple;
+    --feedback-1-colour: black;
+    --feedback-2-colour: white;
 }
 
 header {
