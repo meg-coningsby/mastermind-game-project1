@@ -116,7 +116,7 @@ main {
 }
 
 .solution-row {
-    background: grey;
+    background: cornsilk;
 }
 
 .feedback-board {
@@ -132,6 +132,7 @@ main {
 
 .feedback-board div {
     border: dashed 1px blue;
+    background: lightgray;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
