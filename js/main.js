@@ -3,6 +3,7 @@
 /*----- declare variables -----*/
 let board;
 let solution = [];
+let selectionArray = [];
 let feedbackBoard;
 
 /*----- cached HTML elements  -----*/
@@ -21,6 +22,7 @@ const restartGameButtonElement = document.querySelector(`.restart-button`);
 init();
 
 function init() {
+    selectionArray = [1, 2, 3, 4, 5, 6];
     board = [
         [0, 0, 0, 0],
         [0, 0, 0, 0],
@@ -41,50 +43,72 @@ function init() {
             solution.push(randomNum);
         }
     }
-    renderSolution();
+    render();
     console.log(solution); // Remove in final code - just to help with testing
 }
 
 /*----- event listeners -----*/
 
 // When a selection pin is clicked
-
-console.log(selectionRowElementArray);
-
 selectionRowElementArray.forEach(function (pin) {
-    cell.addEventListener('click', function (event) {
-        let isDraw = checkDraw();
-        if (winner) {
-            return;
-        } else if (isDraw) {
-            return;
-        } else {
-            const columnNumberIndex = parseInt(event.target.dataset.column);
-            const rowNumberIndex = parseInt(event.target.dataset.row);
-            markCell(columnNumberIndex, rowNumberIndex);
-        }
+    pin.addEventListener('click', function (event) {
+        console.log(event.target.dataset.selectionPin);
+        markPin(selectionPin);
     });
-});
+}); // This just registers the click at the moment, it doesn't do anything with the click
 
 /*----- functions -----*/
 
+// Overall render function
+function render() {
+    renderSelection();
+    renderSolution();
+}
+
+// Colour the selection pins the right colours
+function renderSelection() {
+    for (let i = 0; i < selectionArray.length; i++) {
+        let selectionPin = document.querySelector(
+            `[data-selection-pin="${i}"]`
+        );
+        if (selectionArray[i] === 1) {
+            selectionPin.style.background = 'var(--selection-0-colour)';
+        } else if (selectionArray[i] === 2) {
+            selectionPin.style.background = 'var(--selection-1-colour)';
+        } else if (selectionArray[i] === 3) {
+            selectionPin.style.background = 'var(--selection-2-colour)';
+        } else if (selectionArray[i] === 4) {
+            selectionPin.style.background = 'var(--selection-3-colour)';
+        } else if (selectionArray[i] === 5) {
+            selectionPin.style.background = 'var(--selection-4-colour)';
+        } else if (selectionArray[i] === 6) {
+            selectionPin.style.background = 'var(--selection-5-colour)';
+        } else {
+        }
+    }
+}
+
+// Looks at the values of the solution array and then colours the pins to their corresponding colour, and finally hides the solution.
 function renderSolution() {
     for (let i = 0; i < solution.length; i++) {
         let solutionPin = document.querySelector(`[data-solution-spot="${i}"]`);
         if (solution[i] === 1) {
-            solutionPin.style.background = 'var(--selection-1-colour)';
+            solutionPin.style.background = 'var(--selection-0-colour)';
         } else if (solution[i] === 2) {
-            solutionPin.style.background = 'var(--selection-2-colour)';
+            solutionPin.style.background = 'var(--selection-1-colour)';
         } else if (solution[i] === 3) {
-            solutionPin.style.background = 'var(--selection-3-colour)';
+            solutionPin.style.background = 'var(--selection-2-colour)';
         } else if (solution[i] === 4) {
-            solutionPin.style.background = 'var(--selection-4-colour)';
+            solutionPin.style.background = 'var(--selection-3-colour)';
         } else if (solution[i] === 5) {
-            solutionPin.style.background = 'var(--selection-5-colour)';
+            solutionPin.style.background = 'var(--selection-4-colour)';
         } else if (solution[i] === 6) {
-            solutionPin.style.background = 'var(--selection-6-colour)';
+            solutionPin.style.background = 'var(--selection-5-colour)';
         } else {
         }
         // solutionPin.style.visibility = `hidden`; Commented out just while testing the game
     }
 }
+
+// Adds relevant colour value to the next available pin array in the next available guess row.
+function markPin(selectionPin) {}

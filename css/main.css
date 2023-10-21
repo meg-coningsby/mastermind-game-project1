@@ -5,14 +5,14 @@
 }
 
 :root {
-    --selection-1-colour: red;
-    --selection-2-colour: orange;
-    --selection-3-colour: yellow;
-    --selection-4-colour: green;
-    --selection-5-colour: blue;
-    --selection-6-colour: purple;
-    --feedback-1-colour: black;
-    --feedback-2-colour: white;
+    --selection-0-colour: red;
+    --selection-1-colour: orange;
+    --selection-2-colour: yellow;
+    --selection-3-colour: green;
+    --selection-4-colour: blue;
+    --selection-5-colour: purple;
+    --feedback-0-colour: black;
+    --feedback-1-colour: white;
 }
 
 header {
@@ -56,30 +56,6 @@ main {
     height: 2em;
     border: 1px solid color;
     border-radius: 50%;
-}
-
-.selection-1 {
-    background: var(--selection-1-colour);
-}
-
-.selection-2 {
-    background: var(--selection-2-colour);
-}
-
-.selection-3 {
-    background: var(--selection-3-colour);
-}
-
-.selection-4 {
-    background: var(--selection-4-colour);
-}
-
-.selection-5 {
-    background: var(--selection-5-colour);
-}
-
-.selection-6 {
-    background: var(--selection-6-colour);
 }
 
 .message-board {
