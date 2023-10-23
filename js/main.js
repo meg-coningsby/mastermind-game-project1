@@ -45,8 +45,6 @@ function init() {
     }
     render();
     console.log(`Solution array: `, solution); // Remove in final code - just to help with testing
-    console.log(`Selection array: `, selectionArray); // Remove in final code - just to help with testing
-    console.log(`Original board: `, board); // Remove in final code - just to help with testing
 }
 
 /*----- event listeners -----*/
@@ -116,10 +114,10 @@ function markPin(selectionPinColourNumber) {
 function isGuessRowComplete(guessRow) {
     for (let i = 0; i < guessRow.length; i++) {
         if (guessRow[i] === 0) {
-            return false; // Found a zero, so the row is not complete
+            return false;
         }
     }
-    return true; // All elements in the row are non-zero
+    return true;
 }
 
 // Checks a completed row to see if there are equal (same value & position) or similar elements (same value & diff position). Outputs a feedbackPins array and then updates the feedbackBoard with those values.
@@ -167,15 +165,6 @@ function guessFeedback() {
         }
     }
 }
-
-// -- if yes, for each row with 4 non-zero values:
-// ---- loop through each value one by one
-// ---- firstly, see if it is equal to the solutions value at the same index - if so, push '1' to the relevant feedback board row (to the first available spot)
-// ---- if that isn't true, see if it is equal to any of the solutions values, in any of the index spots - if so, push '2' to the relevant feedback board row (to the first available spot)
-// ---- if that also isn't true, move to the next guess value and repeat the above.
-// -- once feedback has been given & rendered, then checkWin
-// ---- if win is true, stop the game, show the solution and add a message to the message board. Don't allow anymore clicks.
-// ---- if win is false, checkGameOver. If true - display a message in the messageboard and show the solution. If false - allow more clicks.
 
 // Checks if any of the guess rows = the solution row
 function checkWin() {
@@ -264,7 +253,7 @@ function renderSolution() {
         } else if (solution[i] === 0) {
             solutionPin.style.background = `var(--selection-no-colour)`;
         }
-        // solutionPin.style.visibility = `hidden`; Commented out just while testing the game
+        // solutionPin.style.visibility = `hidden`;
     }
 }
 

@@ -102,7 +102,7 @@ main {
 }
 
 .solution-row {
-    background: cornsilk;
+    background: darkgoldenrod;
     border: dashed 1px blue;
     /* Why isn't the border or background displaying? */
 }
