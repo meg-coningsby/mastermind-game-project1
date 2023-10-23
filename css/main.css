@@ -103,7 +103,7 @@ main {
 
 .solution-row {
     background: darkgoldenrod;
-    border: dashed 1px blue;
+    border: 1px dashed blue;
     /* Why isn't the border or background displaying? */
 }
 
