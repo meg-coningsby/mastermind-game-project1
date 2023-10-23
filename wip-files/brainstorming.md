@@ -37,7 +37,7 @@ Mastermind
 1. check the guess code against the solution code once one guess row is complete
     - first just console log the answers
     - then get it to fill in the feedback row with the correct feedback
-1. create the check win function - done (haven't added any win messaging or scoring)
-1. create the game ends function - done (haven't added any game over messaging or scoring)
+1. create the check win function - done
+1. create the game ends function - done
 1. add the calculate score functionality
 1. add functionality to the two buttons

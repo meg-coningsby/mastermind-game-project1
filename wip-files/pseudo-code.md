@@ -37,6 +37,7 @@ Wireframe for game: [https://www.figma.com/file/pwGX65JCXUsUGLHyC7FBGo/Mastermin
 
 \*How feedback is given
 
+-   Check the guess row has 4 non-zero values (meaning four pins have been selected)
 -   Review the first pin in the guesses row:
     -   Check if it is = to the same position pin in the solutions row
         -   If yes, add a black pin to the feedback area (next available spot) & go to next guess pin to check

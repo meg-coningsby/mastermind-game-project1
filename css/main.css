@@ -5,6 +5,7 @@
 }
 
 :root {
+    --selection-no-colour: white;
     --selection-1-colour: red;
     --selection-2-colour: orange;
     --selection-3-colour: yellow;

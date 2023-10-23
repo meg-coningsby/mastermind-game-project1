@@ -8,7 +8,7 @@ let feedbackBoard = [];
 
 /*----- cached HTML elements  -----*/
 const selectionRowElementArray = document.querySelectorAll(`.selection-pins`);
-const messageBoardElement = document.querySelector(`.message-board`);
+const messageBoardElement = document.querySelector(`.messages`);
 const gameBoardElement = document.querySelector(`.game-board`);
 const solutionRowElement = document.querySelector(`.solution-row`);
 const feedbackBoardElement = document.querySelector(`.feedback-board`);
@@ -54,9 +54,42 @@ function init() {
 // When a selection pin is clicked
 selectionRowElementArray.forEach(function (pin) {
     pin.addEventListener('click', function (event) {
-        selectionPinColourNumber = parseInt(event.target.dataset.colour);
-        markPin(selectionPinColourNumber);
+        let isWon = checkWin();
+        let isGameOver = checkGameOver();
+        if (isWon) {
+            return;
+        } else if (isGameOver) {
+            return;
+        } else {
+            selectionPinColourNumber = parseInt(event.target.dataset.colour);
+            markPin(selectionPinColourNumber);
+        }
     });
+});
+
+// When the 'another round' button is clicked
+playAnotherRoundButtonElement.addEventListener('click', function (event) {
+    init();
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+            board[i][j] = 0;
+            renderBoard();
+        }
+    }
+    messageBoardElement.innerHTML = '';
+});
+
+// When the 'restart game' button is clicked
+restartButtonElement.addEventListener('click', function (event) {
+    init();
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+            board[i][j] = 0;
+            renderBoard();
+        }
+    }
+    messageBoardElement.innerHTML = '';
+    // more code required here - once I have scoring set up
 });
 
 /*----- functions -----*/
@@ -69,6 +102,7 @@ function markPin(selectionPinColourNumber) {
                 if (board[i][j] === 0) {
                     board[i][j] = selectionPinColourNumber;
                     renderBoard();
+                    gameMessages();
                     return;
                 }
             }
@@ -111,6 +145,19 @@ function checkGameOver() {
     return true;
 }
 
+// Updates game messages for a win or game over
+function gameMessages() {
+    let isWon = checkWin();
+    let isGameOver = checkGameOver();
+    if (isWon) {
+        messageBoardElement.innerHTML = `Congratulations! You've solved the code.`;
+    } else if (isGameOver) {
+        messageBoardElement.innerHTML = `Oh no! You weren't able to solve the code. Game over.`;
+    }
+}
+
+//
+
 /*----- render functions -----*/
 
 // Overall render function
@@ -139,7 +186,8 @@ function renderSelection() {
             selectionPin.style.background = 'var(--selection-5-colour)';
         } else if (selectionArray[i] === 6) {
             selectionPin.style.background = 'var(--selection-6-colour)';
-        } else {
+        } else if (selectionArray[i] === 0) {
+            selectionPin.style.background = `var(--selection-no-colour)`;
         }
     }
 }
@@ -160,7 +208,8 @@ function renderSolution() {
             solutionPin.style.background = 'var(--selection-5-colour)';
         } else if (solution[i] === 6) {
             solutionPin.style.background = 'var(--selection-6-colour)';
-        } else {
+        } else if (solution[i] === 0) {
+            solutionPin.style.background = `var(--selection-no-colour)`;
         }
         // solutionPin.style.visibility = `hidden`; Commented out just while testing the game
     }
@@ -185,7 +234,8 @@ function renderBoard() {
                 boardPin.style.background = 'var(--selection-5-colour)';
             } else if (board[i][j] === 6) {
                 boardPin.style.background = 'var(--selection-6-colour)';
-            } else {
+            } else if (board[i][j] === 0) {
+                boardPin.style.background = `var(--selection-no-colour)`;
             }
         }
     }
