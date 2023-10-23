@@ -14,6 +14,9 @@ const gameBoardElement = document.querySelector(`.game-board`);
 const feedbackBoardElement = document.querySelector(`.feedback-board`);
 const solutionRowElement = document.querySelector(`.solution-row`);
 const scoreboardElement = document.querySelector(`.scores`);
+const previousScoreHeadingElement = document.querySelector(
+    `.previous-scores-heading`
+);
 const previousScoresElement = document.querySelector(`.previous-scores`);
 const playAnotherRoundButtonElement = document.querySelector(
     `.another-round-button`
@@ -24,6 +27,7 @@ const restartGameButtonElement = document.querySelector(`.restart-button`);
 init();
 
 function init() {
+    solution = [];
     selectionArray = [1, 2, 3, 4, 5, 6];
     board = [
         [0, 0, 0, 0],
@@ -60,6 +64,7 @@ function init() {
         }
     }
     solutionRowElement.style.visibility = `hidden`;
+    previousScoreHeadingElement.style.visibility = `hidden`;
     render();
     console.log(solution);
 }
@@ -85,6 +90,7 @@ selectionRowElementArray.forEach(function (pin) {
 // When the 'another round' button is clicked
 playAnotherRoundButtonElement.addEventListener('click', function (event) {
     init();
+    previousScoreHeadingElement.style.visibility = `visible`;
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[i].length; j++) {
             board[i][j] = 0;
@@ -115,7 +121,8 @@ restartGameButtonElement.addEventListener('click', function (event) {
     }
     render();
     messageBoardElement.innerHTML = '';
-    // more code required here - once I have scoring set up
+    scoreboardElement.innerHTML = '';
+    previousScoresElement.innerHTML = '';
 });
 
 /*----- functions -----*/
@@ -242,8 +249,9 @@ function gameMessagesAndScores() {
     let isGameOver = checkGameOver();
     if (isWon) {
         calculateScore();
-        messageBoardElement.innerHTML = `Congratulations! You've solved the code.`;
+        messageBoardElement.innerHTML = `Congratulations! You cracked the code.`;
         scoreboardElement.innerHTML = `You scored ${gameScore.toLocaleString()} points!`;
+        previousScoreHeadingElement.style.visibility = `visible`;
         let newScoreNode = document.createElement('li');
         let newScoreText = document.createTextNode(gameScore.toLocaleString());
         newScoreNode.prepend(newScoreText);
@@ -251,8 +259,9 @@ function gameMessagesAndScores() {
         solutionRowElement.style.visibility = `visible`;
     } else if (isGameOver) {
         calculateScore();
-        messageBoardElement.innerHTML = `Oh no! You weren't able to solve the code. Game over.`;
+        messageBoardElement.innerHTML = `Game over! You didn't solve the secret code.`;
         scoreboardElement.innerHTML = `You didn't score any points`;
+        previousScoreHeadingElement.style.visibility = `visible`;
         let newScoreNode = document.createElement('li');
         let newScoreText = document.createTextNode(gameScore.toLocaleString());
         newScoreNode.prepend(newScoreText);
@@ -355,7 +364,7 @@ function renderFeedback() {
             } else if (feedbackBoard[i][j] === 2) {
                 feedbackPin.style.background = 'var(--feedback-2-colour)';
             } else {
-                feedbackPin.style.background = `transparent`;
+                feedbackPin.style.background = `var(--feedback-no-colour)`;
             }
         }
     }
