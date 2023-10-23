@@ -1,4 +1,4 @@
-# Meg's Maddening Mastermind Game
+# CODE CRACKER
 
 This is Project 1 for my General Assembly Course - Software Engineering Immsersive.
 
@@ -22,7 +22,7 @@ This game is coded using:
 
 ## Getting Started
 
-Want to give the game a go? Head over to [Meg's Maddening Mastermind](https://meg-coningsby.github.io/mastermind-game-project1/) to play.
+Want to give the game a go? Head over to [CODECRACKER](https://meg-coningsby.github.io/mastermind-game-project1/) to play.
 
 There are general instructions listed over on the webpage - but in case you want a sneak peek:
 
