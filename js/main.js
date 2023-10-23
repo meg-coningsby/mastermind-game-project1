@@ -5,14 +5,15 @@ let board = [];
 let solution = [];
 let selectionArray = [];
 let feedbackBoard = [];
-let scores = [];
+let gameScore = 0;
 
 /*----- cached HTML elements  -----*/
 const selectionRowElementArray = document.querySelectorAll(`.selection-pins`);
 const messageBoardElement = document.querySelector(`.messages`);
 const gameBoardElement = document.querySelector(`.game-board`);
 const feedbackBoardElement = document.querySelector(`.feedback-board`);
-const scoreboardElement = document.querySelector(`.scoreboard`);
+const scoreboardElement = document.querySelector(`.scores`);
+const previousScoresElement = document.querySelector(`.previous-scores`);
 const playAnotherRoundButtonElement = document.querySelector(
     `.another-round-button`
 );
@@ -94,6 +95,7 @@ playAnotherRoundButtonElement.addEventListener('click', function (event) {
     }
     render();
     messageBoardElement.innerHTML = '';
+    scoreboardElement.innerHTML = '';
 });
 
 // When the 'restart game' button is clicked
@@ -213,15 +215,23 @@ function checkGameOver() {
 
 // Calculates your game score and adds it to the scores array
 function calculateScore() {
-    gameScore = 0;
-    let emptyRowsCount = 0;
-    const emptyRow = [0, 0, 0, 0];
-    for (let guessRow of board) {
-        if (guessRow.every((element, index) => element === emptyRow[index])) {
-            emptyRowsCount += 1;
+    let isGameOver = checkGameOver();
+    let isWon = checkWin();
+    if (isWon) {
+        let emptyRowsCount = 1;
+        const emptyRow = [0, 0, 0, 0];
+        for (let guessRow of board) {
+            if (
+                guessRow.every((element, index) => element === emptyRow[index])
+            ) {
+                emptyRowsCount += 1;
+            }
         }
+        console.log(emptyRowsCount);
+        gameScore = emptyRowsCount * 100;
+    } else if (isGameOver) {
+        gameScore = 0;
     }
-    gameScore += emptyRowsCount * 100;
 }
 
 // Updates game messages & scores for a win or game over
@@ -229,9 +239,21 @@ function gameMessagesAndScores() {
     let isWon = checkWin();
     let isGameOver = checkGameOver();
     if (isWon) {
+        calculateScore();
         messageBoardElement.innerHTML = `Congratulations! You've solved the code.`;
+        scoreboardElement.innerHTML = `You scored ${gameScore.toLocaleString()} points!`;
+        let newScoreNode = document.createElement('li');
+        let newScoreText = document.createTextNode(gameScore.toLocaleString());
+        newScoreNode.prepend(newScoreText);
+        previousScoresElement.prepend(newScoreNode);
     } else if (isGameOver) {
+        calculateScore();
         messageBoardElement.innerHTML = `Oh no! You weren't able to solve the code. Game over.`;
+        scoreboardElement.innerHTML = `You didn't score any points`;
+        let newScoreNode = document.createElement('li');
+        let newScoreText = document.createTextNode(gameScore.toLocaleString());
+        newScoreNode.prepend(newScoreText);
+        previousScoresElement.prepend(newScoreNode);
     }
 }
 
