@@ -71,9 +71,14 @@ playAnotherRoundButtonElement.addEventListener('click', function (event) {
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[i].length; j++) {
             board[i][j] = 0;
-            renderBoard();
         }
     }
+    for (let i = 0; i < feedbackBoard.length; i++) {
+        for (let j = 0; j < feedbackBoard[i].length; j++) {
+            feedbackBoard[i][j] = 0;
+        }
+    }
+    render();
     messageBoardElement.innerHTML = '';
 });
 
@@ -83,9 +88,14 @@ restartGameButtonElement.addEventListener('click', function (event) {
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[i].length; j++) {
             board[i][j] = 0;
-            renderBoard();
         }
     }
+    for (let i = 0; i < feedbackBoard.length; i++) {
+        for (let j = 0; j < feedbackBoard[i].length; j++) {
+            feedbackBoard[i][j] = 0;
+        }
+    }
+    render();
     messageBoardElement.innerHTML = '';
     // more code required here - once I have scoring set up
 });
@@ -295,6 +305,7 @@ function renderFeedback() {
             } else if (feedbackBoard[i][j] === 2) {
                 feedbackPin.style.background = 'var(--feedback-2-colour)';
             } else {
+                feedbackPin.style.background = `transparent`;
             }
         }
     }
