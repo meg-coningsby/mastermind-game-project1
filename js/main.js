@@ -63,12 +63,14 @@ selectionRowElementArray.forEach(function (pin) {
 
 // Adds relevant colour value to the next available pin array in the next available guess row.
 function markPin(selectionPinColourNumber) {
-    for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board[i].length; j++) {
-            if (board[i][j] === 0) {
-                board[i][j] = selectionPinColourNumber;
-                renderBoard();
-                return;
+    if (!isNaN(selectionPinColourNumber)) {
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board[i].length; j++) {
+                if (board[i][j] === 0) {
+                    board[i][j] = selectionPinColourNumber;
+                    renderBoard();
+                    return;
+                }
             }
         }
     }
