@@ -12,8 +12,8 @@
     --selection-4-colour: green;
     --selection-5-colour: blue;
     --selection-6-colour: purple;
-    --feedback-1-colour: black;
-    --feedback-2-colour: white;
+    --feedback-1-colour: white;
+    --feedback-2-colour: black;
 }
 
 header {

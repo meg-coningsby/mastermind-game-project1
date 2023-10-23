@@ -80,7 +80,7 @@ playAnotherRoundButtonElement.addEventListener('click', function (event) {
 });
 
 // When the 'restart game' button is clicked
-restartButtonElement.addEventListener('click', function (event) {
+restartGameButtonElement.addEventListener('click', function (event) {
     init();
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[i].length; j++) {
@@ -102,6 +102,8 @@ function markPin(selectionPinColourNumber) {
                 if (board[i][j] === 0) {
                     board[i][j] = selectionPinColourNumber;
                     renderBoard();
+                    guessFeedback();
+                    renderFeedback();
                     gameMessages();
                     return;
                 }
@@ -110,19 +112,70 @@ function markPin(selectionPinColourNumber) {
     }
 }
 
+// Takes a row and confirms if it has no non-zero elements in it (i.e. it is 'complete')
+function isGuessRowComplete(guessRow) {
+    for (let i = 0; i < guessRow.length; i++) {
+        if (guessRow[i] === 0) {
+            return false; // Found a zero, so the row is not complete
+        }
+    }
+    return true; // All elements in the row are non-zero
+}
+
+// Checks a completed row to see if there are equal (same value & position) or similar elements (same value & diff position). Outputs a feedbackPins array and then updates the feedbackBoard with those values.
+function checkAgainstSolution(guessRow) {
+    if (isGuessRowComplete(guessRow)) {
+        const feedbackPins = [];
+        let solutionCopy = [...solution];
+        let guessRowCopy = [...guessRow];
+        let gameRowIndex = board.indexOf(guessRow);
+        for (let i = 0; i < guessRowCopy.length; i++) {
+            if (guessRowCopy[i] === solutionCopy[i]) {
+                feedbackPins.push(2);
+                solutionCopy[i] = 0;
+                guessRowCopy[i] = 0;
+            }
+        }
+        for (let i = 0; i < guessRowCopy.length; i++) {
+            if (
+                solutionCopy[i] != 0 &&
+                solutionCopy.includes(guessRowCopy[i])
+            ) {
+                feedbackPins.push(1);
+                let solutionCopyIndex = solutionCopy.indexOf(guessRowCopy[i]);
+                guessRowCopy[i] = 0;
+                solutionCopy[solutionCopyIndex] = 0;
+            }
+        }
+        feedbackPins.sort();
+        feedbackPins.reverse();
+        if (feedbackPins.length < 4) {
+            const zerosToAdd = 4 - feedbackPins.length;
+            for (let i = 0; i < zerosToAdd; i++) {
+                feedbackPins.push(0);
+            }
+        }
+        feedbackBoard[gameRowIndex] = feedbackPins;
+    }
+}
+
 // Checks if four guesses in a row have been made, and if so, provides feedback. ++ Also checks if there is a win or if the game is over - and adds messages accordining
 function guessFeedback() {
-    // check the board array, check each row and see if any rows have four non-zero values
-    // -- if no, exit the function
-    // -- if yes, for each row with 4 non-zero values:
-    // ---- loop through each value one by one
-    // ---- firstly, see if it is equal to the solutions value at the same index - if so, push '1' to the relevant feedback board row (to the first available spot)
-    // ---- if that isn't true, see if it is equal to any of the solutions values, in any of the index spots - if so, push '2' to the relevant feedback board row (to the first available spot)
-    // ---- if that also isn't true, move to the next guess value and repeat the above.
-    // -- once feedback has been given & rendered, then checkWin
-    // ---- if win is true, stop the game, show the solution and add a message to the message board. Don't allow anymore clicks.
-    // ---- if win is false, checkGameOver. If true - display a message in the messageboard and show the solution. If false - allow more clicks.
+    for (let i = 0; i < board.length; i++) {
+        if (isGuessRowComplete(board[i])) {
+            checkAgainstSolution(board[i]);
+        }
+    }
 }
+
+// -- if yes, for each row with 4 non-zero values:
+// ---- loop through each value one by one
+// ---- firstly, see if it is equal to the solutions value at the same index - if so, push '1' to the relevant feedback board row (to the first available spot)
+// ---- if that isn't true, see if it is equal to any of the solutions values, in any of the index spots - if so, push '2' to the relevant feedback board row (to the first available spot)
+// ---- if that also isn't true, move to the next guess value and repeat the above.
+// -- once feedback has been given & rendered, then checkWin
+// ---- if win is true, stop the game, show the solution and add a message to the message board. Don't allow anymore clicks.
+// ---- if win is false, checkGameOver. If true - display a message in the messageboard and show the solution. If false - allow more clicks.
 
 // Checks if any of the guess rows = the solution row
 function checkWin() {
