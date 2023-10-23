@@ -22,7 +22,7 @@ This game is coded using:
 
 ## Getting Started
 
-Want to give the game a go? Head over to [CODECRACKER](https://meg-coningsby.github.io/mastermind-game-project1/) to play.
+Want to give the game a go? Head over to [CODE CRACKER](https://meg-coningsby.github.io/mastermind-game-project1/) to play.
 
 There are general instructions listed over on the webpage - but in case you want a sneak peek:
 
@@ -32,7 +32,7 @@ There are general instructions listed over on the webpage - but in case you want
     -   A black pin means one of your guess pins is the right colour **and** in the right location.
     -   A white pin means one of your guess pins is the right colour but not in the right location.
     -   A blank pin means that one of your guess pins is an incorrect colour.
-    -   _Note: the location these pins appear in the feedback grid is not related to the same location guess pin (i.e. if you get a black pin in the first feedback pin location, this doesn't mean your first guess pin is the right colour and location, it just means one of your guess pins is the right colour and location - you'll need to figure out which one that is)_
+    -   Note: the location these pins appear in the feedback grid is not related to the same location guess pin (i.e. if you get a black pin in the first feedback pin location, this doesn't mean your first guess pin is the right colour and location, it just means one of your guess pins is the right colour and location - you'll need to figure out which one that is)\_
 -   The game is won when your guess pins match the solution pins, in both colour and location.
 -   If you reach the end of all the guess rows and you haven't guessed correctly, it will be **game over**! The solution will be uncovered so you can see what you were trying to guess.
 
