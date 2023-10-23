@@ -12,6 +12,7 @@ const selectionRowElementArray = document.querySelectorAll(`.selection-pins`);
 const messageBoardElement = document.querySelector(`.messages`);
 const gameBoardElement = document.querySelector(`.game-board`);
 const feedbackBoardElement = document.querySelector(`.feedback-board`);
+const solutionRowElement = document.querySelector(`.solution-row`);
 const scoreboardElement = document.querySelector(`.scores`);
 const previousScoresElement = document.querySelector(`.previous-scores`);
 const playAnotherRoundButtonElement = document.querySelector(
@@ -58,8 +59,9 @@ function init() {
             solution.push(randomNum);
         }
     }
+    solutionRowElement.style.visibility = `hidden`;
     render();
-    console.log(`Solution array: `, solution); // Remove in final code - just to help with testing
+    console.log(solution);
 }
 
 /*----- event listeners -----*/
@@ -234,7 +236,7 @@ function calculateScore() {
     }
 }
 
-// Updates game messages & scores for a win or game over
+// Updates game messages, scores and shows solution for a win or game over
 function gameMessagesAndScores() {
     let isWon = checkWin();
     let isGameOver = checkGameOver();
@@ -246,6 +248,7 @@ function gameMessagesAndScores() {
         let newScoreText = document.createTextNode(gameScore.toLocaleString());
         newScoreNode.prepend(newScoreText);
         previousScoresElement.prepend(newScoreNode);
+        solutionRowElement.style.visibility = `visible`;
     } else if (isGameOver) {
         calculateScore();
         messageBoardElement.innerHTML = `Oh no! You weren't able to solve the code. Game over.`;
@@ -254,6 +257,7 @@ function gameMessagesAndScores() {
         let newScoreText = document.createTextNode(gameScore.toLocaleString());
         newScoreNode.prepend(newScoreText);
         previousScoresElement.prepend(newScoreNode);
+        solutionRowElement.style.visibility;
     }
 }
 
@@ -310,7 +314,6 @@ function renderSolution() {
         } else if (solution[i] === 0) {
             solutionPin.style.background = `var(--selection-no-colour)`;
         }
-        // solutionPin.style.visibility = `hidden`;
     }
 }
 
