@@ -24,7 +24,7 @@ a:active {
     --selection-4-colour: #589a5d;
     --selection-5-colour: #4781a7;
     --selection-6-colour: #746198;
-    --feedback-1-colour: white;
+    --feedback-1-colour: rgb(255, 255, 255);
     --feedback-2-colour: black;
     --feedback-no-colour: #d4c8b2;
 }
@@ -211,6 +211,7 @@ main {
 
 .feedback-board {
     border: 2px solid var(--button-main);
+    background: var(--button-main);
     padding: 0 1em 0 1em;
     width: 5em;
     grid-row: 4 / 5;
@@ -226,7 +227,6 @@ main {
 }
 
 .feedback-pin {
-    border: 1px solid color;
     border-radius: 50%;
     width: 1em;
     height: 1em;
