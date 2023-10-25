@@ -266,7 +266,7 @@ function gameMessagesAndScores() {
         let newScoreText = document.createTextNode(gameScore.toLocaleString());
         newScoreNode.prepend(newScoreText);
         previousScoresElement.prepend(newScoreNode);
-        solutionRowElement.style.visibility;
+        solutionRowElement.style.visibility = `visible`;
     }
 }
 

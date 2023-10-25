@@ -41,9 +41,10 @@ Mastermind
 1. create the game ends function - done
 1. add functionality to the two buttons - done
 
-## Next up ideas
+## Wednesday tasks
 
-1. Expand to 15 rows
-1. Scoring system functionality
-1. Stlying
-1. Try again button - if they get to game over? Keeps the same solution, but you can try again
+1. Stlye the header better
+1. Add a background grid to the board and feedback board
+1. Look at changing coloured circles for images
+1. Review the code, where can I shorten / simplify
+1. Input your name, and add it to the scoreboard when you finish a game
