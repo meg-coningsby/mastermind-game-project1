@@ -5,7 +5,7 @@ let board = [];
 let solution = [];
 let selectionArray = [];
 let feedbackBoard = [];
-let gameScore = 0;
+let gameScore;
 
 /*----- cached HTML elements  -----*/
 const selectionRowElementArray = document.querySelectorAll(`.selection-pins`);
@@ -56,18 +56,19 @@ function init() {
         [0, 0, 0, 0],
         [0, 0, 0, 0],
     ];
+    gameScore = 0;
     while (solution.length < 4) {
         const randomNum = Math.floor(Math.random() * 6) + 1;
         if (!solution.includes(randomNum)) {
             solution.push(randomNum);
         }
     }
-    // solutionPinsElementArray.forEach(function (pin) {
-    //     pin.style.visibility = `hidden`;
-    // });
+    solutionPinsElementArray.forEach(function (pin) {
+        pin.style.visibility = `hidden`;
+    });
     previousScoreHeadingElement.style.visibility = `hidden`;
     render();
-    console.log(solution);
+    // console.log(solution); //Uncomment this for the solution to appear in the console log (makes testing a lot easier)
 }
 
 /*----- event listeners -----*/
@@ -92,16 +93,7 @@ selectionRowElementArray.forEach(function (pin) {
 playAnotherRoundButtonElement.addEventListener('click', function (event) {
     init();
     previousScoreHeadingElement.style.visibility = `visible`;
-    for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board[i].length; j++) {
-            board[i][j] = 0;
-        }
-    }
-    for (let i = 0; i < feedbackBoard.length; i++) {
-        for (let j = 0; j < feedbackBoard[i].length; j++) {
-            feedbackBoard[i][j] = 0;
-        }
-    }
+    setBoardArrayToZero();
     render();
     messageBoardElement.innerHTML = '';
     scoreboardElement.innerHTML = '';
@@ -110,16 +102,7 @@ playAnotherRoundButtonElement.addEventListener('click', function (event) {
 // When the 'restart game' button is clicked
 restartGameButtonElement.addEventListener('click', function (event) {
     init();
-    for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board[i].length; j++) {
-            board[i][j] = 0;
-        }
-    }
-    for (let i = 0; i < feedbackBoard.length; i++) {
-        for (let j = 0; j < feedbackBoard[i].length; j++) {
-            feedbackBoard[i][j] = 0;
-        }
-    }
+    setBoardArrayToZero();
     render();
     messageBoardElement.innerHTML = '';
     scoreboardElement.innerHTML = '';
@@ -146,7 +129,7 @@ function markPin(selectionPinColourNumber) {
     }
 }
 
-// Takes a row and confirms if it has no non-zero elements in it (i.e. it is 'complete')
+// Takes a guess row and confirms if it has no non-zero elements in it (i.e. is the guess row 'complete')
 function isGuessRowComplete(guessRow) {
     for (let i = 0; i < guessRow.length; i++) {
         if (guessRow[i] === 0) {
@@ -193,7 +176,7 @@ function checkAgainstSolution(guessRow) {
     }
 }
 
-// Checks if four guesses in a row have been made, and if so, provides feedback. ++ Also checks if there is a win or if the game is over - and adds messages accordining
+// Processes the guess feedback (goes through each row of the board, sees which ones are complete rows, and then runs them against the solution)
 function guessFeedback() {
     for (let i = 0; i < board.length; i++) {
         if (isGuessRowComplete(board[i])) {
@@ -223,7 +206,7 @@ function checkGameOver() {
     return true;
 }
 
-// Calculates your game score and adds it to the scores array
+// Calculates game score and adds it to the scores array
 function calculateScore() {
     let isGameOver = checkGameOver();
     let isWon = checkWin();
@@ -237,7 +220,6 @@ function calculateScore() {
                 emptyRowsCount += 1;
             }
         }
-        console.log(emptyRowsCount);
         gameScore = emptyRowsCount * 100;
     } else if (isGameOver) {
         gameScore = 0;
@@ -272,6 +254,20 @@ function gameMessagesAndScores() {
         solutionPinsElementArray.forEach(function (pin) {
             pin.style.visibility = `visible`;
         });
+    }
+}
+
+// Reset the board to an empty array
+function setBoardArrayToZero() {
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+            board[i][j] = 0;
+        }
+    }
+    for (let i = 0; i < feedbackBoard.length; i++) {
+        for (let j = 0; j < feedbackBoard[i].length; j++) {
+            feedbackBoard[i][j] = 0;
+        }
     }
 }
 
