@@ -8,26 +8,6 @@ My take on the classic childhood game - Mastermind.
 
 A hidden code has been set and it is your job to try and figure it out. Get feedback after each guess to help you get closer to the solution. You only have a limited amount of guesses - so make them count!
 
-## Game Screenshots
-
-Game header:
-![](./resources/header-screenshot.png)
-
-Game instructions:
-![](./resources/instructions-screenshot.png)
-
-Empty game board:
-![](./resources/empty-game-board-screenshot.png)
-
-Game board - won:
-![](./resources/won-game-screenshot.png)
-
-Game board - game over:
-![](./resources/game-over-screenshot.png)
-
-Game board & buttons:
-![](./resources/game-board-and-buttons.png)
-
 ## Technologies Used in Game
 
 This game is coded using:
@@ -50,6 +30,26 @@ There are general instructions listed over on the webpage - but in case you want
     -   Note: the location these pins appear in the feedback grid is not related to the same location guess pin (i.e. if you get a black pin in the first feedback pin location, this doesn't mean your first guess pin is the right colour and location, it just means one of your guess pins is the right colour and location - you'll need to figure out which one that is)\_
 -   The game is won when your guess pins match the solution pins, in both colour and location.
 -   If you reach the end of all the guess rows and you haven't guessed correctly, it will be **game over**! The solution will be uncovered so you can see what you were trying to guess.
+
+## Game Screenshots
+
+Game header:
+![](./resources/header-screenshot.png)
+
+Game instructions:
+![](./resources/instructions-screenshot.png)
+
+Empty game board:
+![](./resources/empty-game-board-screenshot.png)
+
+Game board - won:
+![](./resources/won-game-screenshot.png)
+
+Game board - game over:
+![](./resources/game-over-screenshot.png)
+
+Game board & buttons:
+![](./resources/game-board-and-buttons.png)
 
 ## Next steps
 
