@@ -2,7 +2,14 @@
 
 * {
     box-sizing: border-box;
-    color: white;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none;
+    color: inherit;
 }
 
 :root {
@@ -25,37 +32,155 @@
 }
 
 header {
-    background: var(--background-main);
     font-family: 'Nunito', sans-serif;
     padding: 1em;
-    text-align: center;
-}
-
-.instructions {
-    width: 45em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    width: 70em;
     margin: auto;
 }
+.header-copy {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr;
+    justify-content: center;
+}
 
-body {
+h1 {
+    font-size: 40px;
+    grid-row: 1 / 2;
+}
+
+.sub-heading {
     font-family: 'PT Sans', sans-serif;
+    grid-row: 2 / 3;
+}
+
+.header-images {
+    display: grid;
+    justify-content: center;
+}
+
+.header-image {
+    height: 300px;
+    width: 300px;
+}
+
+button {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 16px;
+    background: var(--background-main);
+    color: white;
+    margin-top: 2em;
+    padding: 0.5em 1em 0.5em 1em;
+    width: auto;
+    height: auto;
+    display: inline;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.get-started,
+.how-to-play {
+    grid-row: 3 / 4;
+}
+
+.get-started:hover,
+.how-to-play:hover {
+    background: var(--button-secondary-hover);
+}
+
+h3 {
+    font-family: 'Nunito', sans-serif;
 }
 
 p {
     margin: 0 0 1em 0;
+    font-family: 'PT Sans', sans-serif;
+}
+
+li {
+    line-height: 150%;
+}
+
+span {
+    font-weight: bold;
 }
 
 main {
-    background: var(--background-main);
     display: grid;
-    grid-template-columns: 25em 5em 25em;
-    grid-template-rows: 6em 40em 8em 6em;
-    align-content: center;
-    justify-content: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 17fr;
+    justify-items: center;
+}
+
+.instruction-area {
+    grid-row: 1 / 2;
+    margin: 2em 5em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.instructions-image {
+    grid-column: 1 / 2;
+}
+
+.instruction-image-file {
+    height: 300px;
+    width: 300px;
+}
+
+.instructions {
+    grid-column: 2 / 3;
+}
+
+.game-area {
+    grid-row: 2 / 3;
+    /* background: var(--background-main); */
+    display: grid;
+    grid-template-columns: 5fr 1fr 3fr;
+    grid-template-rows: 50px 50px 60px 100px 600px 100px;
+    width: 75%;
+}
+
+.game-heading {
+    grid-row: 1 / 2;
+    grid-column: 1 / 4;
+}
+
+.game-subheading {
+    grid-row: 2 / 3;
+    grid-column: 1 / 4;
+}
+
+.game-buttons {
+    grid-row: 3 / 4;
+    grid-column: 1 / 4;
+}
+
+.another-round-button {
+    background: var(--button-main);
+}
+
+.another-round-button:hover {
+    background: var(--button-main-hover);
+}
+
+.restart-button {
+    background-color: var(--button-secondary);
+}
+
+.restart-button:hover {
+    background: var(--button-secondary-hover);
 }
 
 .selection-pins {
     padding: 1em 0;
-    grid-row: 1 / 2;
+    grid-row: 4 / 5;
     grid-column: 1 / 4;
     display: grid;
     grid-template-rows: 3em 3em;
@@ -76,18 +201,9 @@ main {
     cursor: pointer;
 }
 
-.message-board {
-    padding: 1em 0 0 1em;
-    text-align: justify;
-    font-size: 18px;
-    font-weight: bolder;
-    grid-row: 1 / 2;
-    grid-column: 2 / 4;
-}
-
 .game-board {
     padding: 0 1em 0 0;
-    grid-row: 2 / 3;
+    grid-row: 5 / 6;
     grid-column: 1 / 2;
     display: grid;
     grid-template-rows: repeat(12, 1fr);
@@ -106,29 +222,10 @@ main {
     height: 2em;
 }
 
-.solution-row {
-    grid-row: 3 / 4;
-    grid-column: 1 / 4;
-    padding-bottom: 1em;
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: repeat(4, 1fr);
-    justify-content: space-around;
-    justify-items: center;
-    align-items: center;
-    gap: 5px;
-}
-
-.solution-row h3 {
-    padding-top: 1em;
-    grid-row: 1 / 2;
-    grid-column: 1 / 5;
-}
-
 .feedback-board {
     padding: 0 1em 0 1em;
     width: 5em;
-    grid-row: 2 / 3;
+    grid-row: 5 / 6;
     grid-column: 2 / 3;
     display: grid;
     grid-template-rows: repeat(24, 1fr);
@@ -148,7 +245,7 @@ main {
 
 .updates {
     padding-left: 1em;
-    grid-row: 2 / 3;
+    grid-row: 5 / 6;
     grid-column: 3 / 4;
 }
 
@@ -158,33 +255,21 @@ main {
     font-size: larger;
 }
 
-button {
-    font-family: 'PT Sans', sans-serif;
-    font-size: 16px;
+.solution-row {
+    grid-row: 6 / 7;
+    grid-column: 1 / 4;
+    padding-bottom: 1em;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: space-around;
+    justify-items: center;
+    align-items: center;
+    gap: 5px;
 }
 
-.another-round-button {
-    margin: 1em 1em 0 0;
-    height: 3em;
-    background: var(--button-main);
-    grid-row: 4 / 5;
-    grid-column: 1 / 2;
-}
-
-.another-round-button:hover {
-    cursor: pointer;
-    background: var(--button-main-hover);
-}
-
-.restart-button {
-    margin: 1em 0 0 1em;
-    height: 3em;
-    background-color: var(--button-secondary);
-    grid-row: 4 / 5;
-    grid-column: 2 / 4;
-}
-
-.restart-button:hover {
-    cursor: pointer;
-    background: var(--button-secondary-hover);
+.solution-row h3 {
+    padding-top: 1em;
+    grid-row: 1 / 2;
+    grid-column: 1 / 5;
 }

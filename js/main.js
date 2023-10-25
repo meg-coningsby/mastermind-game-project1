@@ -63,7 +63,7 @@ function init() {
             solution.push(randomNum);
         }
     }
-    solutionRowElement.style.visibility = `hidden`;
+    // solutionRowElement.style.visibility = `hidden`;
     previousScoreHeadingElement.style.visibility = `hidden`;
     render();
     console.log(solution);
