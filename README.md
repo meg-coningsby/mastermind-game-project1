@@ -1,4 +1,4 @@
-# CODE CRACKER
+# [CODE CRACKER](https://meg-coningsby.github.io/mastermind-game-project1/)
 
 This is Project 1 for my General Assembly Course - Software Engineering Immsersive.
 
@@ -10,7 +10,23 @@ A hidden code has been set and it is your job to try and figure it out. Get feed
 
 ## Game Screenshots
 
-To come
+Game header:
+![](./resources/header-screenshot.png)
+
+Game instructions:
+![](./resources/instructions-screenshot.png)
+
+Empty game board:
+![](./resources/empty-game-board-screenshot.png)
+
+Game board - won:
+![](./resources/won-game-screenshot.png)
+
+Game board - game over:
+![](./resources/game-over-screenshot.png)
+
+Game board & buttons:
+![](./resources/game-board-and-buttons.png)
 
 ## Technologies Used in Game
 

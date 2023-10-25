@@ -68,7 +68,7 @@ function init() {
     });
     previousScoreHeadingElement.style.visibility = `hidden`;
     render();
-    // console.log(solution); //Uncomment this for the solution to appear in the console log (makes testing a lot easier)
+    console.log(solution); //Uncomment this for the solution to appear in the console log (makes testing a lot easier)
 }
 
 /*----- event listeners -----*/
@@ -155,7 +155,7 @@ function checkAgainstSolution(guessRow) {
         }
         for (let i = 0; i < guessRowCopy.length; i++) {
             if (
-                solutionCopy[i] != 0 &&
+                guessRowCopy[i] != 0 &&
                 solutionCopy.includes(guessRowCopy[i])
             ) {
                 feedbackPins.push(1);
@@ -164,6 +164,7 @@ function checkAgainstSolution(guessRow) {
                 solutionCopy[solutionCopyIndex] = 0;
             }
         }
+
         feedbackPins.sort();
         feedbackPins.reverse();
         if (feedbackPins.length < 4) {
