@@ -13,22 +13,24 @@ a:active {
 }
 
 :root {
-    --background-main: #002b3f;
-    --solution-row: #646697;
-    --button-main: #005467;
-    --button-main-hover: #003f4d;
-    --button-secondary: #00817e;
-    --button-secondary-hover: #00615e;
-    --selection-no-colour: #5b656e;
-    --selection-1-colour: rgb(135, 17, 17);
-    --selection-2-colour: rgb(141, 95, 10);
-    --selection-3-colour: rgb(138, 138, 12);
-    --selection-4-colour: rgb(9, 62, 9);
-    --selection-5-colour: rgb(6, 6, 76);
-    --selection-6-colour: rgb(37, 4, 37);
+    --button-main: #575757;
+    --button-main-hover: #8b8888;
+    --button-secondary: #d4c8b2;
+    --button-secondary-hover: #d0ccc4;
+    --selection-no-colour: #d4c8b2;
+    --selection-1-colour: #a75051;
+    --selection-2-colour: #b27d58;
+    --selection-3-colour: #b3af38;
+    --selection-4-colour: #589a5d;
+    --selection-5-colour: #4781a7;
+    --selection-6-colour: #746198;
     --feedback-1-colour: white;
     --feedback-2-colour: black;
-    --feedback-no-colour: #5b656e;
+    --feedback-no-colour: #d4c8b2;
+}
+
+body {
+    font-family: 'PT Sans', sans-serif;
 }
 
 header {
@@ -55,7 +57,9 @@ h1 {
 
 .sub-heading {
     font-family: 'PT Sans', sans-serif;
+    font-size: 18px;
     grid-row: 2 / 3;
+    padding-bottom: 4em;
 }
 
 .header-images {
@@ -64,24 +68,34 @@ h1 {
 }
 
 .header-image {
-    height: 300px;
-    width: 300px;
+    height: 500px;
+    width: 500px;
 }
 
 button {
     font-family: 'PT Sans', sans-serif;
     font-size: 16px;
-    background: var(--background-main);
+    font-weight: bold;
+    background: var(--button-main);
     color: white;
-    margin-top: 2em;
-    padding: 0.5em 1em 0.5em 1em;
-    width: auto;
-    height: auto;
+    border: none;
+    padding: 0.5em 1em;
     display: inline;
 }
 
 button:hover {
     cursor: pointer;
+    background: var(--button-main-hover);
+}
+
+.how-to-play,
+.restart-button {
+    background: var(--button-secondary);
+}
+
+.how-to-play:hover,
+.restart-button:hover {
+    background: var(--button-secondary-hover);
 }
 
 .get-started,
@@ -89,18 +103,8 @@ button:hover {
     grid-row: 3 / 4;
 }
 
-.get-started:hover,
-.how-to-play:hover {
-    background: var(--button-secondary-hover);
-}
-
 h3 {
     font-family: 'Nunito', sans-serif;
-}
-
-p {
-    margin: 0 0 1em 0;
-    font-family: 'PT Sans', sans-serif;
 }
 
 li {
@@ -123,6 +127,8 @@ main {
     margin: 2em 5em;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
 }
 
 .instructions-image {
@@ -130,8 +136,8 @@ main {
 }
 
 .instruction-image-file {
-    height: 300px;
-    width: 300px;
+    height: 450px;
+    width: 450px;
 }
 
 .instructions {
@@ -140,10 +146,9 @@ main {
 
 .game-area {
     grid-row: 2 / 3;
-    /* background: var(--background-main); */
     display: grid;
     grid-template-columns: 5fr 1fr 3fr;
-    grid-template-rows: 50px 50px 60px 100px 600px 100px;
+    grid-template-rows: 60px 60px 100px 700px 200px 60px;
     width: 75%;
 }
 
@@ -153,34 +158,15 @@ main {
 }
 
 .game-subheading {
+    align-self: center;
     grid-row: 2 / 3;
     grid-column: 1 / 4;
 }
 
-.game-buttons {
-    grid-row: 3 / 4;
-    grid-column: 1 / 4;
-}
-
-.another-round-button {
-    background: var(--button-main);
-}
-
-.another-round-button:hover {
-    background: var(--button-main-hover);
-}
-
-.restart-button {
-    background-color: var(--button-secondary);
-}
-
-.restart-button:hover {
-    background: var(--button-secondary-hover);
-}
-
 .selection-pins {
+    border: 2px solid var(--button-main);
     padding: 1em 0;
-    grid-row: 4 / 5;
+    grid-row: 3 / 4;
     grid-column: 1 / 4;
     display: grid;
     grid-template-rows: 3em 3em;
@@ -202,8 +188,9 @@ main {
 }
 
 .game-board {
+    border: 2px solid var(--button-main);
     padding: 0 1em 0 0;
-    grid-row: 5 / 6;
+    grid-row: 4 / 5;
     grid-column: 1 / 2;
     display: grid;
     grid-template-rows: repeat(12, 1fr);
@@ -223,10 +210,12 @@ main {
 }
 
 .feedback-board {
+    border: 2px solid var(--button-main);
     padding: 0 1em 0 1em;
     width: 5em;
-    grid-row: 5 / 6;
+    grid-row: 4 / 5;
     grid-column: 2 / 3;
+    justify-self: center;
     display: grid;
     grid-template-rows: repeat(24, 1fr);
     grid-template-columns: repeat(2, 1fr);
@@ -244,8 +233,9 @@ main {
 }
 
 .updates {
+    border: 2px solid var(--button-main);
     padding-left: 1em;
-    grid-row: 5 / 6;
+    grid-row: 4 / 5;
     grid-column: 3 / 4;
 }
 
@@ -256,20 +246,33 @@ main {
 }
 
 .solution-row {
-    grid-row: 6 / 7;
+    border: 2px solid var(--button-main);
+    grid-row: 5 / 6;
     grid-column: 1 / 4;
-    padding-bottom: 1em;
+    margin: 2em 0 2em 0;
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: repeat(4, 1fr);
     justify-content: space-around;
     justify-items: center;
     align-items: center;
-    gap: 5px;
 }
 
 .solution-row h3 {
-    padding-top: 1em;
     grid-row: 1 / 2;
     grid-column: 1 / 5;
+}
+
+.game-buttons {
+    grid-row: 6 / 7;
+    grid-column: 1 / 4;
+    display: flex;
+    column-gap: 1em;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.restart-button,
+.another-round-button {
+    width: 50em;
 }
