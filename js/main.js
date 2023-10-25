@@ -10,9 +10,8 @@ let gameScore = 0;
 /*----- cached HTML elements  -----*/
 const selectionRowElementArray = document.querySelectorAll(`.selection-pins`);
 const messageBoardElement = document.querySelector(`.messages`);
-const gameBoardElement = document.querySelector(`.game-board`);
-const feedbackBoardElement = document.querySelector(`.feedback-board`);
 const solutionRowElement = document.querySelector(`.solution-row`);
+const solutionPinsElementArray = document.querySelectorAll(`.solution-pin`);
 const scoreboardElement = document.querySelector(`.scores`);
 const previousScoreHeadingElement = document.querySelector(
     `.previous-scores-heading`
@@ -63,7 +62,9 @@ function init() {
             solution.push(randomNum);
         }
     }
-    // solutionRowElement.style.visibility = `hidden`;
+    solutionPinsElementArray.forEach(function (pin) {
+        pin.style.visibility = `hidden`;
+    });
     previousScoreHeadingElement.style.visibility = `hidden`;
     render();
     console.log(solution);
@@ -256,7 +257,9 @@ function gameMessagesAndScores() {
         let newScoreText = document.createTextNode(gameScore.toLocaleString());
         newScoreNode.prepend(newScoreText);
         previousScoresElement.prepend(newScoreNode);
-        solutionRowElement.style.visibility = `visible`;
+        solutionPinsElementArray.forEach(function (pin) {
+            pin.style.visibility = `visible`;
+        });
     } else if (isGameOver) {
         calculateScore();
         messageBoardElement.innerHTML = `Game over! You didn't solve the secret code.`;
@@ -266,7 +269,9 @@ function gameMessagesAndScores() {
         let newScoreText = document.createTextNode(gameScore.toLocaleString());
         newScoreNode.prepend(newScoreText);
         previousScoresElement.prepend(newScoreNode);
-        solutionRowElement.style.visibility = `visible`;
+        solutionPinsElementArray.forEach(function (pin) {
+            pin.style.visibility = `visible`;
+        });
     }
 }
 
