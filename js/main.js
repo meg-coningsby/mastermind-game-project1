@@ -62,9 +62,9 @@ function init() {
             solution.push(randomNum);
         }
     }
-    solutionPinsElementArray.forEach(function (pin) {
-        pin.style.visibility = `hidden`;
-    });
+    // solutionPinsElementArray.forEach(function (pin) {
+    //     pin.style.visibility = `hidden`;
+    // });
     previousScoreHeadingElement.style.visibility = `hidden`;
     render();
     console.log(solution);

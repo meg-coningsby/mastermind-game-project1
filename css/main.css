@@ -35,18 +35,15 @@ body {
 
 header {
     font-family: 'Nunito', sans-serif;
-    padding: 1em;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
+    display: flex;
+    column-gap: 2em;
     align-items: center;
-    width: 70em;
     margin: auto;
 }
+
 .header-copy {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 3fr;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -58,18 +55,16 @@ h1 {
 .sub-heading {
     font-family: 'PT Sans', sans-serif;
     font-size: 18px;
-    grid-row: 2 / 3;
-    padding-bottom: 4em;
 }
 
 .header-images {
-    display: grid;
+    display: flex;
     justify-content: center;
 }
 
 .header-image {
-    height: 500px;
-    width: 500px;
+    height: 100%;
+    width: 100%;
 }
 
 button {
@@ -79,7 +74,8 @@ button {
     background: var(--button-main);
     color: white;
     border: none;
-    padding: 0.5em 1em;
+    margin: 1em 0 0 0;
+    padding: 0.5em 1.5em;
     display: inline;
 }
 
@@ -98,11 +94,6 @@ button:hover {
     background: var(--button-secondary-hover);
 }
 
-.get-started,
-.how-to-play {
-    grid-row: 3 / 4;
-}
-
 h3 {
     font-family: 'Nunito', sans-serif;
 }
@@ -119,40 +110,34 @@ main {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 2fr;
-    justify-items: center;
 }
 
 .instruction-area {
     grid-row: 1 / 2;
-    margin: 2em 5em;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    justify-items: center;
+    margin: 2em 0 0 0;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .instructions-image {
-    grid-column: 1 / 2;
+    display: none;
 }
 
 .instruction-image-file {
-    height: 450px;
-    width: 450px;
-}
-
-.instructions {
-    grid-column: 2 / 3;
+    height: 100%;
+    width: 100%;
 }
 
 .game-area {
-    grid-row: 2 / 3;
     display: grid;
     grid-template-columns: 5fr 1fr 3fr;
     grid-template-rows: 60px 60px 100px 700px 200px 60px;
-    width: 75%;
+    width: 100%;
 }
 
 .game-heading {
+    margin: 2em 0 0 0;
     grid-row: 1 / 2;
     grid-column: 1 / 4;
 }
@@ -176,7 +161,8 @@ main {
     align-items: center;
 }
 
-.selection-pins div {
+.selection-pins div,
+.solution-pin {
     width: 2em;
     height: 2em;
     border: 1px solid color;
@@ -189,30 +175,27 @@ main {
 
 .game-board {
     border: 2px solid var(--button-main);
-    padding: 0 1em 0 0;
+    margin: 0 1em 0 0;
     grid-row: 4 / 5;
     grid-column: 1 / 2;
     display: grid;
     grid-template-rows: repeat(12, 1fr);
     grid-template-columns: repeat(4, 1fr);
-    justify-content: space-around;
     justify-items: center;
     align-items: center;
-    gap: 5px;
 }
 
-.guess-pin,
-.solution-pin {
+.guess-pin {
     border: 1px solid color;
     border-radius: 50%;
-    width: 2em;
-    height: 2em;
+    width: 1.5em;
+    height: 1.5em;
 }
 
 .feedback-board {
     border: 2px solid var(--button-main);
     background: var(--button-main);
-    padding: 0 1em 0 1em;
+    margin: 0 1em 0 0;
     width: 5em;
     grid-row: 4 / 5;
     grid-column: 2 / 3;
@@ -220,7 +203,6 @@ main {
     display: grid;
     grid-template-rows: repeat(24, 1fr);
     grid-template-columns: repeat(2, 1fr);
-    justify-content: space-around;
     justify-items: center;
     align-items: center;
     gap: 5px;
@@ -228,8 +210,8 @@ main {
 
 .feedback-pin {
     border-radius: 50%;
-    width: 1em;
-    height: 1em;
+    width: 0.75em;
+    height: 0.75em;
 }
 
 .updates {
@@ -277,4 +259,80 @@ main {
 .restart-button,
 .another-round-button {
     width: 50em;
+}
+
+@media (min-width: 768px) {
+    .header-image {
+        height: 80%;
+        width: 80%;
+    }
+
+    .main {
+        grid-template-rows: 2fr 5fr;
+    }
+
+    .instruction-area {
+        margin: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        width: 95%;
+    }
+
+    .header-copy {
+        justify-self: center;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 3fr;
+    }
+
+    .sub-heading {
+        grid-row: 2 / 3;
+    }
+
+    .header-images {
+        display: grid;
+        justify-content: center;
+    }
+
+    .header-image {
+        height: 90%;
+        width: 90%;
+    }
+
+    .get-started,
+    .how-to-play {
+        grid-row: 3 / 4;
+    }
+
+    main {
+        grid-template-rows: 2fr 5fr;
+        justify-items: center;
+    }
+
+    .instruction-area {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        justify-items: center;
+        width: 95%;
+    }
+
+    .instructions-image {
+        display: block;
+    }
+
+    .instruction-image-file {
+        height: 60%;
+        width: 60%;
+    }
+
+    .game-area {
+        width: 80%;
+    }
 }
