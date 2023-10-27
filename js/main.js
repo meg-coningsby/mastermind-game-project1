@@ -1,10 +1,10 @@
 /*----- constants -----*/
 
 /*----- declare variables -----*/
-let board = [];
-let solution = [];
-let selectionArray = [];
-let feedbackBoard = [];
+let board;
+let solution;
+let selectionArray;
+let feedbackBoard;
 let gameScore;
 
 /*----- cached HTML elements  -----*/
@@ -60,6 +60,7 @@ function init() {
     while (solution.length < 4) {
         const randomNum = Math.floor(Math.random() * 6) + 1;
         if (!solution.includes(randomNum)) {
+            // Included to ensure the solution only includes unique numbers (no duplicates)
             solution.push(randomNum);
         }
     }
@@ -68,7 +69,7 @@ function init() {
     });
     previousScoreHeadingElement.style.visibility = `hidden`;
     render();
-    console.log(solution); //Uncomment this for the solution to appear in the console log (makes testing a lot easier)
+    console.log(`(FOR GAME REVIEW) Game Solution:`, solution); // This has been kept in for review purposes, and it will allow you to see the solution in the console while playing the game. Comment this out if you want to remove it.
 }
 
 /*----- event listeners -----*/
@@ -89,17 +90,17 @@ selectionRowElementArray.forEach(function (pin) {
     });
 });
 
-// When the 'another round' button is clicked
+// When the 'another round' button is clicked (start a new game, render the game board, remove previous messages, but keep previous scores)
 playAnotherRoundButtonElement.addEventListener('click', function (event) {
     init();
-    previousScoreHeadingElement.style.visibility = `visible`;
     setBoardArrayToZero();
     render();
+    previousScoreHeadingElement.style.visibility = `visible`;
     messageBoardElement.innerHTML = '';
     scoreboardElement.innerHTML = '';
 });
 
-// When the 'restart game' button is clicked
+// When the 'restart game' button is clicked (start a new game from scratch, remove all previous scores)
 restartGameButtonElement.addEventListener('click', function (event) {
     init();
     setBoardArrayToZero();
@@ -111,9 +112,11 @@ restartGameButtonElement.addEventListener('click', function (event) {
 
 /*----- functions -----*/
 
-// Adds relevant colour value to the next available pin array in the next available guess row.
+// Adds relevant value to the next available pin array in the next available guess row, render the board, and check if feedback needs to be given, and if there are any updates to push.
 function markPin(selectionPinColourNumber) {
+    console.log(selectionPinColourNumber);
     if (!isNaN(selectionPinColourNumber)) {
+        // This is included to ensure if a space outside the circle is clicked (which returns NaN) - nothing happens
         for (let i = 0; i < board.length; i++) {
             for (let j = 0; j < board[i].length; j++) {
                 if (board[i][j] === 0) {
@@ -143,9 +146,11 @@ function isGuessRowComplete(guessRow) {
 function checkAgainstSolution(guessRow) {
     if (isGuessRowComplete(guessRow)) {
         const feedbackPins = [];
+        // I am creating copies so I don't actually mess with the solution or guess rows (which would alter the game)
         let solutionCopy = [...solution];
         let guessRowCopy = [...guessRow];
         let gameRowIndex = board.indexOf(guessRow);
+        // First check if there are any pins in the right colour & position. If there are, log a 2 to the feedback pins array and then clear that value from the solution and guess row arrays (as they don't need to be checked again)
         for (let i = 0; i < guessRowCopy.length; i++) {
             if (guessRowCopy[i] === solutionCopy[i]) {
                 feedbackPins.push(2);
@@ -153,6 +158,7 @@ function checkAgainstSolution(guessRow) {
                 guessRowCopy[i] = 0;
             }
         }
+        // Then, with the remaining values in the guess row, see if they are present in the solution array. If so, push a 1 to the feedback pins array and clear it (so you don't check it again if there are duplicates it in the guess row).
         for (let i = 0; i < guessRowCopy.length; i++) {
             if (
                 guessRowCopy[i] != 0 &&
@@ -164,15 +170,17 @@ function checkAgainstSolution(guessRow) {
                 solutionCopy[solutionCopyIndex] = 0;
             }
         }
-
+        // So it isn't obvious the order of the feedback, sort the array and then reverse it (so black pins are first, then white pins)
         feedbackPins.sort();
         feedbackPins.reverse();
+        // The feedback row needs to be 4 pins in length (even if those are empty), so add 0 elements until the row is 4 in length.
         if (feedbackPins.length < 4) {
             const zerosToAdd = 4 - feedbackPins.length;
             for (let i = 0; i < zerosToAdd; i++) {
                 feedbackPins.push(0);
             }
         }
+        // Push the feedbackPins array to the feedbackBoard using the right index (taken from index of the guessRow)
         feedbackBoard[gameRowIndex] = feedbackPins;
     }
 }
