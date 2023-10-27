@@ -114,7 +114,6 @@ restartGameButtonElement.addEventListener('click', function (event) {
 
 // Adds relevant value to the next available pin array in the next available guess row, render the board, and check if feedback needs to be given, and if there are any updates to push.
 function markPin(selectionPinColourNumber) {
-    console.log(selectionPinColourNumber);
     if (!isNaN(selectionPinColourNumber)) {
         // This is included to ensure if a space outside the circle is clicked (which returns NaN) - nothing happens
         for (let i = 0; i < board.length; i++) {
