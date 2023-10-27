@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&family=PT+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=PT+Sans:wght@400;700&display=swap');
 
 * {
     box-sizing: border-box;
@@ -13,7 +13,7 @@ a:active {
 }
 
 :root {
-    --button-main: #575757;
+    --main: #575757;
     --button-main-hover: #8b8888;
     --button-secondary: #d4c8b2;
     --button-secondary-hover: #d0ccc4;
@@ -50,6 +50,7 @@ header {
 
 h1 {
     font-size: 40px;
+    font-weight: 600;
     grid-row: 1 / 2;
 }
 
@@ -72,7 +73,7 @@ button {
     font-family: 'PT Sans', sans-serif;
     font-size: 16px;
     font-weight: bold;
-    background: var(--button-main);
+    background: var(--main);
     color: white;
     border: none;
     margin: 1em 0 0 0;
@@ -97,6 +98,7 @@ button:hover {
 
 h3 {
     font-family: 'Nunito', sans-serif;
+    font-weight: 600;
 }
 
 li {
@@ -104,7 +106,7 @@ li {
 }
 
 span {
-    font-weight: bold;
+    font-weight: 700;
 }
 
 main {
@@ -150,7 +152,7 @@ main {
 }
 
 .selection-pins {
-    border: 2px solid var(--button-main);
+    border: 2px solid var(--main);
     padding: 1em 0;
     grid-row: 3 / 4;
     grid-column: 1 / 4;
@@ -175,7 +177,7 @@ main {
 }
 
 .game-board {
-    border: 2px solid var(--button-main);
+    border: 2px solid var(--main);
     grid-row: 4 / 5;
     grid-column: 1 / 2;
     display: grid;
@@ -193,7 +195,7 @@ main {
 }
 
 .feedback-board {
-    background: var(--button-main);
+    background: var(--main);
     padding: 0 0.5em;
     grid-row: 4 / 5;
     grid-column: 2 / 3;
@@ -213,7 +215,7 @@ main {
 }
 
 .updates {
-    border: 2px solid var(--button-main);
+    border: 2px solid var(--main);
     padding-left: 1em;
     grid-row: 4 / 5;
     grid-column: 3 / 4;
@@ -226,8 +228,8 @@ main {
 }
 
 .solution-row {
-    border: 2px solid var(--button-main);
-    background: var(--button-main);
+    border: 2px solid var(--main);
+    background: var(--main);
     color: white;
     grid-row: 5 / 6;
     grid-column: 1 / 4;
