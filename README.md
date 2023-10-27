@@ -1,4 +1,4 @@
-# [CODE CRACKER](https://meg-coningsby.github.io/mastermind-game-project1/)
+# [🔒 CODE CRACKER 🔓](https://meg-coningsby.github.io/mastermind-game-project1/)
 
 This is Project 1 for my General Assembly Course - Software Engineering Immsersive.
 
@@ -12,7 +12,7 @@ This is Project 1 for my General Assembly Course - Software Engineering Immsersi
 
 <a id="item-one"></a>
 
-## Game Overview
+## 📖 Game Overview
 
 My take on the classic childhood game - Mastermind.
 
@@ -20,7 +20,7 @@ A hidden code has been set and it is your job to try and figure it out. Get feed
 
 <a id="item-two"></a>
 
-## Technologies Used in Game
+## 💻 Technologies Used in Game
 
 This game is coded using:
 
@@ -30,7 +30,7 @@ This game is coded using:
 
 <a id="item-three"></a>
 
-## Getting Started
+## 🏁 Getting Started
 
 Want to give the game a go? Head over to [CODE CRACKER](https://meg-coningsby.github.io/mastermind-game-project1/) to play.
 
@@ -47,7 +47,7 @@ There are instructions listed over on the webpage - but in case you want a sneak
 
 <a id="item-four"></a>
 
-## Game Screenshots
+## 📸 Game Screenshots
 
 Game header:
 ![](./resources/header-screenshot.png)
@@ -69,7 +69,7 @@ Game board & buttons:
 
 <a id="item-five"></a>
 
-## Next steps
+## ⏭️ Next steps
 
 Planned future enhancements for the game:
 
